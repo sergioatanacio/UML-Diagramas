@@ -1,0 +1,204 @@
+<!-- HTML para los botones, textos y checkboxes -->
+<div class="item-container" id="container1">
+    <input type="checkbox" id="check1" class="custom-checkbox" onclick="toggleBackground('container1', this)">
+    <button onclick="copyToClipboard(this, 'check1')" class="copy-button">Copiar</button>
+    <span>usando plantUML dame el (Que sea extenso y detallado)  1. **Diagrama de Casos de Uso**</span>
+</div>
+<div class="item-container" id="container2">
+    <input type="checkbox" id="check2" class="custom-checkbox" onclick="toggleBackground('container2', this)">
+    <button onclick="copyToClipboard(this, 'check2')" class="copy-button">Copiar</button>
+    <span>usando plantUML dame el (Que sea extenso y detallado)  2. **Diagrama de Clases**</span>
+</div>
+<div class="item-container" id="container3">
+    <input type="checkbox" id="check3" class="custom-checkbox" onclick="toggleBackground('container3', this)">
+    <button onclick="copyToClipboard(this, 'check3')" class="copy-button">Copiar</button>
+    <span>usando plantUML dame el (Que sea extenso y detallado)  3. **Diagrama de Paquetes**</span>
+</div>
+<div class="item-container" id="container4">
+    <input type="checkbox" id="check4" class="custom-checkbox" onclick="toggleBackground('container4', this)">
+    <button onclick="copyToClipboard(this, 'check4')" class="copy-button">Copiar</button>
+    <span>usando plantUML dame el (Que sea extenso y detallado)  4. **Diagrama de Componentes**</span>
+</div>
+<div class="item-container" id="container5">
+    <input type="checkbox" id="check5" class="custom-checkbox" onclick="toggleBackground('container5', this)">
+    <button onclick="copyToClipboard(this, 'check5')" class="copy-button">Copiar</button>
+    <span>usando plantUML dame el (Que sea extenso y detallado)  5. **Diagrama de Despliegue**</span>
+</div>
+<div class="item-container" id="container6">
+    <input type="checkbox" id="check6" class="custom-checkbox" onclick="toggleBackground('container6', this)">
+    <button onclick="copyToClipboard(this, 'check6')" class="copy-button">Copiar</button>
+    <span>usando plantUML dame el (Que sea extenso y detallado)  6. **Diagrama de Estado**</span>
+</div>
+<div class="item-container" id="container7">
+    <input type="checkbox" id="check7" class="custom-checkbox" onclick="toggleBackground('container7', this)">
+    <button onclick="copyToClipboard(this, 'check7')" class="copy-button">Copiar</button>
+    <span>usando plantUML dame el (Que sea extenso y detallado)  7. **Diagrama de Secuencia**</span>
+</div>
+<div class="item-container" id="container8">
+    <input type="checkbox" id="check8" class="custom-checkbox" onclick="toggleBackground('container8', this)">
+    <button onclick="copyToClipboard(this, 'check8')" class="copy-button">Copiar</button>
+    <span>usando plantUML dame el (Que sea extenso y detallado)  8. **Diagrama de Colaboración (o Comunicación)**</span>
+</div>
+<div class="item-container" id="container9">
+    <input type="checkbox" id="check9" class="custom-checkbox" onclick="toggleBackground('container9', this)">
+    <button onclick="copyToClipboard(this, 'check9')" class="copy-button">Copiar</button>
+    <span>usando plantUML dame el (Que sea extenso y detallado)  9. **Diagrama de Actividades**</span>
+</div>
+<div class="item-container" id="container10">
+    <input type="checkbox" id="check10" class="custom-checkbox" onclick="toggleBackground('container10', this)">
+    <button onclick="copyToClipboard(this, 'check10')" class="copy-button">Copiar</button>
+    <span>usando plantUML dame el (Que sea extenso y detallado)  10. **Diagrama de Objetos**</span>
+</div>
+
+<!-- Añade más bloques según sea necesario -->
+
+<!-- CSS -->
+<style>
+    .item-container {
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background-color: #f5f5f5; /* Fondo gris claro por defecto */
+    }
+
+    .item-container.checked {
+        background-color: #e0f7fa; /* Celeste claro para los checks marcados */
+    }
+
+    .custom-checkbox {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        accent-color: #0288d1; /* Azul para el checkbox */
+    }
+
+    .custom-checkbox:checked {
+        background-color: #0288d1;
+        border-color: #0288d1;
+    }
+
+    .copy-button {
+        background-color: #757575; /* Gris por defecto */
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .copy-button.checked {
+        background-color: #0288d1; /* Azul cuando el checkbox está marcado */
+    }
+
+    .copy-button:hover {
+        background-color: #0277bd; /* Azul más oscuro para el hover */
+    }
+
+    span {
+        font-size: 14px;
+        color: #333;
+    }
+</style>
+
+<!-- JavaScript -->
+<script>
+function copyToClipboard(button, checkboxId) {
+    const spanText = button.nextElementSibling.innerText;
+    const tempInput = document.createElement("input");
+    tempInput.style.position = "absolute";
+    tempInput.style.left = "-9999px";
+    tempInput.value = spanText;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand("copy");
+    document.body.removeChild(tempInput);
+    const checkbox = document.getElementById(checkboxId);
+    checkbox.checked = true; // Marca el checkbox
+    toggleBackground('container' + checkboxId.replace('check', ''), checkbox);
+}
+
+function toggleBackground(containerId, checkbox) {
+    const container = document.getElementById(containerId);
+    const button = container.querySelector('button');
+    
+    if (checkbox.checked) {
+        container.classList.add('checked');
+        button.classList.add('checked');
+    } else {
+        container.classList.remove('checked');
+        button.classList.remove('checked');
+    }
+}
+</script>
+
+
+
+
+
+<p>Aquí tienes un orden sugerido para crear los diagramas UML, con explicaciones sobre la razón detrás de este orden:</p>
+<h3 id="1-diagrama-de-casos-de-uso-">1. <strong>Diagrama de Casos de Uso</strong></h3>
+<p> <strong>Por qué primero:</strong> </p>
+<ul>
+    <li><strong>Propósito:</strong> Identifica las funcionalidades del sistema desde la perspectiva de los usuarios (actores) y sus objetivos (casos de uso).</li>
+    <li><strong>Razón:</strong> Es fundamental comenzar aquí porque define qué debe hacer el sistema, estableciendo el marco para todo el modelado posterior.</li>
+</ul>
+<h3 id="2-diagrama-de-clases-">2. <strong>Diagrama de Clases</strong></h3>
+<p> <strong>Por qué segundo:</strong></p>
+<ul>
+    <li><strong>Propósito:</strong> Define las clases del sistema, sus atributos, métodos y relaciones.</li>
+    <li><strong>Razón:</strong> Después de conocer las funcionalidades (casos de uso), necesitas definir cómo se estructuran los datos y las clases que implementarán estas funcionalidades. Este diagrama proporciona una visión detallada de la estructura del
+        sistema.</li>
+</ul>
+<h3 id="3-diagrama-de-paquetes-">3. <strong>Diagrama de Paquetes</strong></h3>
+<p> <strong>Por qué tercero:</strong></p>
+<ul>
+    <li><strong>Propósito:</strong> Organiza las clases en paquetes para modularizar el sistema.</li>
+    <li><strong>Razón:</strong> Una vez que tienes las clases, puedes agruparlas en paquetes para mejorar la organización y la gestión del modelo. Esto ayuda a definir la arquitectura general del sistema.</li>
+</ul>
+<h3 id="4-diagrama-de-componentes-">4. <strong>Diagrama de Componentes</strong></h3>
+<p> <strong>Por qué cuarto:</strong></p>
+<ul>
+    <li><strong>Propósito:</strong> Muestra la organización y dependencia de los componentes del sistema.</li>
+    <li><strong>Razón:</strong> Después de definir las clases y paquetes, necesitas entender cómo estos se agrupan y se distribuyen en componentes físicos y lógicos del sistema.</li>
+</ul>
+<h3 id="5-diagrama-de-despliegue-">5. <strong>Diagrama de Despliegue</strong></h3>
+<p> <strong>Por qué quinto:</strong></p>
+<ul>
+    <li><strong>Propósito:</strong> Representa la disposición física del hardware y la distribución del software en el entorno de ejecución.</li>
+    <li><strong>Razón:</strong> Con el sistema organizado en componentes, puedes definir cómo se despliegan estos componentes en el hardware real, mostrando la infraestructura del sistema.</li>
+</ul>
+<h3 id="6-diagrama-de-estado-">6. <strong>Diagrama de Estado</strong></h3>
+<p> <strong>Por qué sexto:</strong></p>
+<ul>
+    <li><strong>Propósito:</strong> Representa los estados por los que pasa un objeto y las transiciones entre estos estados.</li>
+    <li><strong>Razón:</strong> Basado en las clases definidas, necesitas especificar cómo los objetos cambian de estado en respuesta a eventos. Esto depende de las clases y sus atributos definidos anteriormente.</li>
+</ul>
+<h3 id="7-diagrama-de-secuencia-">7. <strong>Diagrama de Secuencia</strong></h3>
+<p> <strong>Por qué séptimo:</strong></p>
+<ul>
+    <li><strong>Propósito:</strong> Muestra cómo los objetos interactúan a lo largo del tiempo para ejecutar un caso de uso.</li>
+    <li><strong>Razón:</strong> Con las clases y sus estados definidos, puedes detallar cómo interactúan los objetos en diferentes escenarios a lo largo del tiempo, basándote en los casos de uso.</li>
+</ul>
+<h3 id="8-diagrama-de-colaboraci-n-o-comunicaci-n-">8. <strong>Diagrama de Colaboración (o Comunicación)</strong></h3>
+<p> <strong>Por qué octavo:</strong></p>
+<ul>
+    <li><strong>Propósito:</strong> Detalla las interacciones entre objetos en términos de comunicación y relaciones.</li>
+    <li><strong>Razón:</strong> Similar al diagrama de secuencia, pero con un enfoque en las relaciones entre objetos. Puedes usarlo para complementar y validar las interacciones descritas en los diagramas de secuencia.</li>
+</ul>
+<h3 id="9-diagrama-de-actividades-">9. <strong>Diagrama de Actividades</strong></h3>
+<p> <strong>Por qué noveno:</strong></p>
+<ul>
+    <li><strong>Propósito:</strong> Describe el flujo de trabajo o las actividades dentro del sistema.</li>
+    <li><strong>Razón:</strong> Una vez que tienes definidos los casos de uso y cómo se comunican los objetos, puedes modelar los flujos de actividades y procesos en el sistema.</li>
+</ul>
+<h3 id="10-diagrama-de-objetos-">10. <strong>Diagrama de Objetos</strong></h3>
+<p> <strong>Por qué último:</strong></p>
+<ul>
+    <li><strong>Propósito:</strong> Muestra instancias concretas de clases en un momento específico.</li>
+    <li><strong>Razón:</strong> Es útil para verificar y validar el diseño al mostrar ejemplos específicos de cómo se instancian y utilizan las clases. Se hace después de definir la estructura general y el comportamiento del sistema.</li>
+</ul>
+<p>Este orden proporciona una progresión lógica desde la definición de requisitos y estructura del sistema hasta la implementación y detalles de comportamiento, asegurando que cada diagrama construya sobre la base de los anteriores.</p>
