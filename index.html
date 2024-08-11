@@ -127,33 +127,96 @@ Diagrama de Objetos</br>
 
 <!-- JavaScript -->
 <script>
-function copyToClipboard(button, checkboxId) {
-    const spanText = button.nextElementSibling.innerText;
-    const tempInput = document.createElement("input");
-    tempInput.style.position = "absolute";
-    tempInput.style.left = "-9999px";
-    tempInput.value = spanText;
-    document.body.appendChild(tempInput);
-    tempInput.select();
-    document.execCommand("copy");
-    document.body.removeChild(tempInput);
-    const checkbox = document.getElementById(checkboxId);
-    checkbox.checked = true; // Marca el checkbox
-    toggleBackground('container' + checkboxId.replace('check', ''), checkbox);
-}
 
-function toggleBackground(containerId, checkbox) {
-    const container = document.getElementById(containerId);
-    const button = container.querySelector('button');
+        function generateItems(lineBreaks) {
+            const inputText = document.getElementById('inputText').value;
+            const generatedItemsContainer = document.getElementById('generatedItemsContainer');
+            generatedItemsContainer.innerHTML = ''; // Limpiar contenido anterior
+
+            // Separar el texto por uno o dos saltos de línea
+            const separator = lineBreaks === 1 ? '\n' : '\n\n';
+            const items = inputText.split(separator);
+
+            items.forEach((item, index) => {
+                if (item.trim()) { // Ignorar elementos vacíos
+                    // Crear el contenedor de elementos
+                    const container = document.createElement('div');
+                    container.classList.add('item-container');
+                    container.id = `container${index + 1}`;
+
+                    // Crear el checkbox
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.id = `check${index + 1}`;
+                    checkbox.classList.add('custom-checkbox');
+                    checkbox.onclick = function () {
+                        toggleBackground(container.id, checkbox);
+                    };
+
+                    // Crear el botón de copia
+                    const copyButton = document.createElement('button');
+                    copyButton.classList.add('copy-button');
+                    copyButton.innerText = 'Copiar';
+                    copyButton.onclick = function () {
+                        copyToClipboard(copyButton, checkbox.id);
+                    };
+
+                    // Crear el span con el texto
+                    const span = document.createElement('span');
+                    span.innerText = item.trim();
+
+                    // Añadir elementos al contenedor
+                    container.appendChild(checkbox);
+                    container.appendChild(copyButton);
+                    container.appendChild(span);
+
+                    // Añadir el contenedor generado al DOM
+                    generatedItemsContainer.appendChild(container);
+                }
+            });
+        }
+
+        function copyToClipboard(button, checkboxId) {
+            const spanText = button.nextElementSibling.innerText;
+            const tempTextArea = document.createElement("textarea");
+            tempTextArea.style.position = "absolute";
+            tempTextArea.style.left = "-9999px";
+            tempTextArea.value = spanText;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempTextArea);
+            const checkbox = document.getElementById(checkboxId);
+            checkbox.checked = true; // Marca el checkbox
+            toggleBackground('container' + checkboxId.replace('check', ''), checkbox);
+        }
+
+        function toggleBackground(containerId, checkbox) {
+            const container = document.getElementById(containerId);
+            const button = container.querySelector('button');
+            
+            if (checkbox.checked) {
+                container.classList.add('checked');
+                button.classList.add('checked');
+            } else {
+                container.classList.remove('checked');
+                button.classList.remove('checked');
+            }
+        }
+
+        function downloadText() {
+            const inputText = document.getElementById('inputText').value;
+            const fileExtension = document.getElementById('fileExtension').value || '.md';
+
+            const blob = new Blob([inputText], { type: "text/plain;charset=utf-8" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "archivo" + fileExtension;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
     
-    if (checkbox.checked) {
-        container.classList.add('checked');
-        button.classList.add('checked');
-    } else {
-        container.classList.remove('checked');
-        button.classList.remove('checked');
-    }
-}
 </script>
 
 
